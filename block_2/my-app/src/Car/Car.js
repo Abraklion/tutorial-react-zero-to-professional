@@ -48,10 +48,21 @@ import React from 'react'
 /**
  *  Урок 6.  Передача параметров
  **/
+// export default props => (
+//   <div>
+//     <h3>Сar name: {props.name}</h3>
+//     <p>Year: <strong>{props.year}</strong></p>
+//   </div>
+// )
+
+/**
+ *  Урок 7.  Передача контента
+ **/
 export default props => (
   <div>
     <h3>Сar name: {props.name}</h3>
     <p>Year: <strong>{props.year}</strong></p>
+    { props.children }
   </div>
 )
 
