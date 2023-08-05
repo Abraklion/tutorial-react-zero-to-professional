@@ -21,7 +21,17 @@ class App extends Component {
    *  оф дока: https://react.dev/reference/react-dom/components/common
    **/
   changeTitleHandler = () => {
-    console.log('Clicked')
+    const oldTitle = this.state.pageTitle
+
+    const newTitle = oldTitle + ' (changed)'
+
+    /**
+     *  Урок 3. Изменение State
+     *  метод setState изменяет состаяние
+     **/
+    this.setState({
+      pageTitle: newTitle
+    })
   }
 
   render() {
