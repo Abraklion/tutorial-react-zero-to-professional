@@ -100,6 +100,7 @@ class AppInline extends Component {
     return (
       <div style={divStyle}>
         <h1 style={{color: 'blue', fontSize: '32px'}}>Hello world!</h1>
+
         <Car />
       </div>
     );
