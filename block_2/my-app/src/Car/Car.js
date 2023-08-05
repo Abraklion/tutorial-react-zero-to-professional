@@ -27,8 +27,19 @@ import React from 'react'
 // )
 
 /** Вариант 4 **/
+// export default () => (
+//   <div>
+//     This is car component <strong>test</strong>
+//   </div>
+// )
+
+/**
+ *  Урок 5.  Вывод динамических данных
+ **/
 export default () => (
   <div>
-    This is car component <strong>test</strong>
+    <p>This is car component</p>
+    <p>Number: <strong>{Math.round(Math.random() * 100)}</strong></p>
   </div>
 )
+
