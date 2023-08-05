@@ -16,6 +16,14 @@ class App extends Component {
     pageTitle: 'React components'
   }
 
+  /**
+   *  Урок 2. Добавление событий
+   *  оф дока: https://react.dev/reference/react-dom/components/common
+   **/
+  changeTitleHandler = () => {
+    console.log('Clicked')
+  }
+
   render() {
     const divStyle = {
       textAlign: 'center'
@@ -26,6 +34,8 @@ class App extends Component {
     return (
       <div style={divStyle}>
         <h1>{this.state.pageTitle}</h1>
+
+        <button onClick={this.changeTitleHandler}>Change title</button>
 
         <Car name={cars[0].name} year={cars[0].year} />
         <Car name={cars[1].name} year={cars[1].year} />
