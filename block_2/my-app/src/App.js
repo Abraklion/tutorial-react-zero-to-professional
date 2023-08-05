@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import logo from './logo.svg';
 import './App.css';
+import Car from "./Car/Car";
 
 class App extends Component {
   render() {
@@ -24,7 +25,9 @@ class App extends Component {
     //   </div>
     // );
 
-    // Как под капотом работает JXS на примере кода сверху
+    /**
+     *  Урок 1. Как под капотом работает JXS на примере кода сверху
+     **/
     return React.createElement(
       'div',
       {
@@ -74,10 +77,38 @@ class App extends Component {
 
     )
 
-    // Ограничения
-    // 1 - нет атрибута class есть className
-    // 2 - нельзя выводить два корневых элемента одновременно
+    /**
+     *  Урок 2.  Ограничения JSX
+     *
+     *  1 - нет атрибута class есть className
+     *  2 - нельзя выводить два корневых элемента одновременно
+    **/
+
   }
 }
 
+/**
+ *  Урок 3. Inline-стили JSX
+ **/
+class AppInline extends Component {
+  render() {
+
+    const divStyle = {
+      textAlign: 'center'
+    }
+
+    return (
+      <div style={divStyle}>
+        <h1 style={{color: 'blue', fontSize: '32px'}}>Hello world!</h1>
+        <Car />
+      </div>
+    );
+
+  }
+
+}
+
 export default App;
+
+export { AppInline };
+
