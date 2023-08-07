@@ -92,8 +92,6 @@ class App extends Component {
 
   toggleCarsHandler = () => {
 
-    console.log(this.state.showCars)
-
     this.setState({
       showCars: !this.state.showCars
     })
@@ -136,9 +134,64 @@ class App extends Component {
     );
   }
 
+  /**
+   * Урок 8. Динамические списки
+   **/
+  onChangeName(name, index) {
+    const cars = [...this.state.cars],
+          car = cars[index]
+
+    car.name = name
+
+    this.setState({cars})
+  }
+
+  deleteHandler(index) {
+    const cars = this.state.cars.concat()
+    cars.splice(index, 1)
+
+    this.setState({cars})
+
+  }
+
+  // шаблон 3
+  templateThree () {
+    const divStyle = {
+      textAlign: 'center'
+    }
+
+    let cars = null
+
+    if (this.state.showCars) {
+      cars = this.state.cars.map((car, index) => {
+        return (
+          <Car
+            key={index}
+            name={car.name}
+            year={car.year}
+            onDelete={this.deleteHandler.bind(this, index)}
+            onChangeName={event => this.onChangeName(event.target.value, index)}
+          />
+        )
+      })
+    }
+
+    return (
+      <div style={divStyle}>
+        <h1>{this.state.pageTitle}</h1>
+
+        <button
+          onClick={this.toggleCarsHandler}
+        >Toggle cars</button>
+
+        { cars }
+      </div>
+    );
+  }
+
   render() {
 
-    return this.templateTwo()
+    return this.templateThree()
 
   }
 }
