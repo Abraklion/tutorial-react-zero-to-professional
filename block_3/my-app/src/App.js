@@ -30,6 +30,14 @@ class App extends Component {
     })
   }
 
+  handlerInput = (evt) => {
+
+    this.setState({
+      pageTitle: evt.target.value
+    })
+
+  }
+
   render() {
     const divStyle = {
       textAlign: 'center'
@@ -40,6 +48,9 @@ class App extends Component {
     return (
       <div style={divStyle}>
         <h1>{this.state.pageTitle}</h1>
+
+        {/* Урок 5.  Обработка Input */}
+        <input type="text" onChange={this.handlerInput}/>
 
         <button
           onClick={this.changeTitleHandler.bind(this, 'Changed!')}
