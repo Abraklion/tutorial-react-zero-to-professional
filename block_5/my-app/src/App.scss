@@ -1,0 +1,18 @@
+/* что бы работал Scss обязательно надо установить sass (npm install sass) зависимость
+она не идет c create-react-app */
+
+.AppButton {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:focus, &:active {
+    outline: none;
+  }
+
+  &:hover {
+    background: #f0ff1e;
+  }
+}
