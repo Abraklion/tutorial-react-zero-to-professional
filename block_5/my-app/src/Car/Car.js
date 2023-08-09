@@ -3,7 +3,42 @@ import classes from './Car.css'
 
 class Car extends React.Component {
 
+  state = {
+    isHovered: false
+  };
+
+  /**
+   * вызовет жизниный цикл, когда компонент получит новые реквизиты
+   * */
+  componentWillReceiveProps(nextProps, nextContext) {
+    console.log('Car componentWillReceiveProps', nextProps)
+  }
+
+  /**
+   * вызовет жизниный цикл, чтобы определить, можно ли пропустить повторный рендеринг
+   * */
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    console.log('Car shouldComponentUpdate', nextProps, nextState)
+    return nextProps.name.trim() !== this.props.name.trim()
+  }
+
+  /**
+   * вызовет жизниный цикл, перед рендерингом с новыми реквизитами или состоянием
+   * */
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    console.log('Car componentWillUpdate', nextProps, nextState)
+  }
+
+  /**
+   * вызовет жизниный цикл, сразу после повторного рендеринга вашего компонента с обновленными реквизитами или состоянием
+   * */
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('Car componentDidUpdate')
+  }
+
   render() {
+    console.log('Car render')
+
     const inputClasses = [classes.input]
 
     if (this.props.name !== '') {
