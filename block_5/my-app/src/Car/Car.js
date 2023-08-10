@@ -8,6 +8,18 @@ class Car extends React.Component {
   };
 
   /**
+   * вызовет жизниный цикл, прямо перед вызовом рендерингом (render) в
+   * аналог устаревшего componentWillUpdate и componentWillReceiveProps
+   * реализация getDerivedStateFromProps блокирует жизниные циклы componentWillReceiveProps и componentWillUpdate
+   * вызовится даже есть shouldComponentUpdate вернет false
+   * */
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log('Car getDerivedStateFromProps', nextProps, prevState)
+
+    return prevState
+  }
+
+  /**
    * вызовет жизниный цикл, когда компонент получит новые реквизиты
    * */
   componentWillReceiveProps(nextProps, nextContext) {
@@ -30,7 +42,18 @@ class Car extends React.Component {
   }
 
   /**
+   * вызовет жизниный цикл, непосредственно перед тем, как React обновит DOM
+   * Еще имеешь доступ в старому DOM
+   * */
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('Car getSnapshotBeforeUpdate')
+
+    return null;
+  }
+
+  /**
    * вызовет жизниный цикл, сразу после повторного рендеринга вашего компонента с обновленными реквизитами или состоянием
+   * Уже обновленный DOM
    * */
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log('Car componentDidUpdate')
