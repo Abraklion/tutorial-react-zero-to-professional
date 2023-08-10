@@ -36,6 +36,13 @@ class Car extends React.Component {
     console.log('Car componentDidUpdate')
   }
 
+  /**
+   * вызовет жизниный цикл, когда ваш компонент будет удален с экрана (из DOM)
+   * */
+  componentWillUnmount() {
+    console.log('Car componentWillUnmount')
+  }
+
   render() {
     console.log('Car render')
 
