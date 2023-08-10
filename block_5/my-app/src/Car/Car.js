@@ -66,8 +66,15 @@ class Car extends React.Component {
     console.log('Car componentWillUnmount')
   }
 
+  /**
+   * что вы хотите отобразить на экране
+   * */
   render() {
     console.log('Car render')
+
+    if (Math.random() > 0.7) {
+      throw new Error('Car random failed')
+    }
 
     const inputClasses = [classes.input]
 
