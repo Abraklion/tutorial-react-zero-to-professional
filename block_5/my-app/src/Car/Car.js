@@ -6,6 +6,15 @@ import PropTypes from 'prop-types';
 
 class Car extends React.Component {
 
+  constructor(props) {
+    super(props)
+
+    /**
+     *
+     * */
+    this.inputRef = React.createRef()
+  }
+
   /**
    * Кокого типа свойства принимает компонент (строгая типизация)
    * */
@@ -73,6 +82,15 @@ class Car extends React.Component {
   }
 
   /**
+   * вызовет жизниный цикл, когда ваш компонент будет добавлен на экран (в DOM)
+   * */
+  componentDidMount() {
+    if (this.props.index === 0) {
+      this.inputRef.current.focus()
+    }
+  }
+
+  /**
    * вызовет жизниный цикл, когда ваш компонент будет удален с экрана (из DOM)
    * */
   componentWillUnmount() {
@@ -106,6 +124,7 @@ class Car extends React.Component {
         <h3>Сar name: {this.props.name}</h3>
         <p>Year: <strong>{this.props.year}</strong></p>
         <input
+          ref={this.inputRef}
           className={inputClasses.join(' ')}
           type="text"
           onChange={this.props.onChangeName}

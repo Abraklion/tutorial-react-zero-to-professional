@@ -76,6 +76,7 @@ class App extends Component {
         return (
           <ErrorBoundary key={index}>
             <Car
+              index={index}
               name={car.name}
               year={car.year}
               onDelete={this.deleteHandler.bind(this, index)}
