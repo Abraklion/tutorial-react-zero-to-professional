@@ -4,7 +4,7 @@ import Quiz from './containers/Quiz';
 function App() {
   return (
     <Layouts>
-      <Quiz/>
+      <Quiz/> {/* -> Компонент викторина */}
     </Layouts>
   );
 }
