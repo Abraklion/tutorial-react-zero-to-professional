@@ -1,0 +1,15 @@
+.ActiveQuiz__item{
+  padding: 5px 10px;
+  margin-bottom: 5px;
+
+  border: 1px solid #fff;
+  border-radius: 5px;
+
+  transition: background .3s ease-in-out;
+
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 255, 255, .2);
+  }
+}

@@ -1,27 +1,28 @@
-import React from 'react'
 import style from './ActiveQuiz.module.scss'
+import AnswersList from "./AnswersList";
 
 /**
- * Активный вопрос
+ * Компонент {Активный вопрос}
  * */
-const ActiveQuiz = props => (
-  <div className={style.ActiveQuiz}>
-    <p className={style.ActiveQuiz__header}>
-      <span>
-        <strong>2.</strong>&nbsp;
-        Как дела?
-      </span>
+const ActiveQuiz = props => {
 
-      <small>4 из 12</small>
-    </p>
+  /**
+   * Отрисовка
+   **/
+  return (
+    <div className={style.ActiveQuiz}>
+      <p className={style.ActiveQuiz__header}>
+        <span>
+          <strong>2.</strong>&nbsp;
+          Как дела?
+        </span>
 
-    <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-    </ul>
-  </div>
-)
+        <small>4 из 12</small>
+      </p>
+
+      <AnswersList answers={props.answers} /> {/* -> Компонент список ответов на вопрос */}
+    </div>
+  )
+}
 
 export default ActiveQuiz

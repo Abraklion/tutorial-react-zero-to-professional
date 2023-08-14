@@ -1,11 +1,15 @@
 import {Component} from "react";
 import style from './Layout.module.scss'
 
-class Layouts extends Component {
+
+/**
+ * Компонент {Викторина}
+ **/
+class Layout extends Component {
 
   /**
-  * Отрисовка
-  **/
+   * Отрисовка
+   **/
   render() {
     return (
       <>
@@ -17,4 +21,4 @@ class Layouts extends Component {
   }
 }
 
-export default Layouts
+export default Layout

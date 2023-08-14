@@ -1,11 +1,19 @@
-import Layouts from './hoc/Layouts';
+import Layout from './hoc/Layout';
+
 import Quiz from './containers/Quiz';
 
+/**
+ * Точка входа
+ **/
 function App() {
+
+  /**
+   * Отрисовка
+   **/
   return (
-    <Layouts>
-      <Quiz/> {/* -> Компонент викторина */}
-    </Layouts>
+    <Layout>
+      <Quiz/> {/* -> Контейнер викторина */}
+    </Layout>
   );
 }
 
