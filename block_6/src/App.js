@@ -1,11 +1,10 @@
-import Layouts from "./hoc/Layouts";
+import Layouts from './hoc/Layouts';
+import Quiz from './containers/Quiz';
 
 function App() {
   return (
     <Layouts>
-      <div className="App">
-        <h1>Hello React</h1>
-      </div>
+      <Quiz/>
     </Layouts>
   );
 }
