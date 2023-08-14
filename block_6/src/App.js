@@ -1,8 +1,12 @@
+import Layouts from "./hoc/Layouts";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Hello React</h1>
-    </div>
+    <Layouts>
+      <div className="App">
+        <h1>Hello React</h1>
+      </div>
+    </Layouts>
   );
 }
 
