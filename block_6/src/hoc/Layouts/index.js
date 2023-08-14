@@ -1,4 +1,5 @@
 import {Component} from "react";
+import style from './Layout.module.scss'
 
 class Layouts extends Component {
 
@@ -8,7 +9,7 @@ class Layouts extends Component {
   render() {
     return (
       <>
-        <main>
+        <main className={style.Layout}>
           {this.props.children}
         </main>
       </>
