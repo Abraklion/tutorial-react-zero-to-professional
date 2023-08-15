@@ -12,8 +12,14 @@ class Quiz extends Component {
    * Состояние компонента
    **/
   state = {
+
+    // активный вопрос
+    activeQuestion: 0,
+
+    // вопросы викторины
     quiz: [
       {
+        id: 1,
         question: 'Какого цвета небо?',
         rightAnswerId: 2,
         answers: [
@@ -22,8 +28,20 @@ class Quiz extends Component {
           {text: 'Красный', id: 3},
           {text: 'Зеленый', id: 4}
         ]
+      },
+      {
+        id: 2,
+        question: 'В каком году основали Санкт-Петербург?',
+        rightAnswerId: 3,
+        answers: [
+          {text: '1700', id: 1},
+          {text: '1702', id: 2},
+          {text: '1703', id: 3},
+          {text: '1803', id: 4}
+        ]
       }
     ]
+
   }
 
   /**
@@ -35,6 +53,10 @@ class Quiz extends Component {
    */
   onAnswerClickHandler = (answerId, e) => {
     console.log('Answer Id: ', answerId)
+
+    this.setState({
+      activeQuestion: this.state.activeQuestion + 1
+    })
   }
 
   /**
@@ -47,9 +69,15 @@ class Quiz extends Component {
           <h1 className={style.Quiz__title}>Ответьте на все вопросы</h1>
 
           <ActiveQuiz
-            answers={this.state.quiz[0].answers}
-            question={this.state.quiz[0].question}
-            onAnswerClick={this.onAnswerClickHandler}
+
+            question={this.state.quiz[this.state.activeQuestion].question} // -> вопрос
+            answers={this.state.quiz[this.state.activeQuestion].answers}   // -> варианты ответов
+
+            answerNumber={this.state.activeQuestion + 1}                   // -> номер вопроса
+            quizLength={this.state.quiz.length}                            // -> всего вопросов
+
+            onAnswerClick={this.onAnswerClickHandler}                      // -> обработчик клика по ответу на вопрос
+
           /> {/* -> Компонент активный вопрос */}
 
         </div>
