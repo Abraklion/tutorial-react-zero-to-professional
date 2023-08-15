@@ -9,7 +9,10 @@ const AnswerItem = props => {
    * Отрисовка
    **/
   return (
-    <li className={style.ActiveQuiz__item}>
+    <li
+      className={style.ActiveQuiz__item}
+      onClick={() => props.onAnswerClick(props.answer.id)}
+    >
       {props.answer.text}
     </li>
   )

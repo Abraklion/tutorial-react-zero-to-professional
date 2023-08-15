@@ -14,13 +14,16 @@ const ActiveQuiz = props => {
       <p className={style.ActiveQuiz__header}>
         <span>
           <strong>2.</strong>&nbsp;
-          Как дела?
+          {props.question}
         </span>
 
         <small>4 из 12</small>
       </p>
 
-      <AnswersList answers={props.answers} /> {/* -> Компонент список ответов на вопрос */}
+      <AnswersList
+        answers={props.answers}
+        onAnswerClick={props.onAnswerClick}
+      /> {/* -> Компонент список ответов на вопрос */}
     </div>
   )
 }
