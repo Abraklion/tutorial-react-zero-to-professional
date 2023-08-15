@@ -16,6 +16,9 @@ class Quiz extends Component {
     // активный вопрос
     activeQuestion: 0,
 
+    // состояние ответа (цвет пункта при клике)
+    answerState: null, // { [id]: 'ActiveQuiz__item--success' } || { [id]: 'ActiveQuiz__item--error' }
+
     // вопросы викторины
     quiz: [
       {
@@ -52,11 +55,44 @@ class Quiz extends Component {
    * @return {void}
    */
   onAnswerClickHandler = (answerId, e) => {
-    console.log('Answer Id: ', answerId)
+    const question = this.state.quiz[this.state.activeQuestion]
 
-    this.setState({
-      activeQuestion: this.state.activeQuestion + 1
-    })
+    if (question.rightAnswerId === answerId) {
+      // если правильный ответ
+
+      this.setState({
+        answerState: {[answerId]: 'ActiveQuiz__item--success'}
+      })
+
+      const timeout = window.setTimeout(() => {
+        if (this.isQuizFinished()) {
+          console.log('Finished')
+        } else {
+          this.setState({
+            activeQuestion: this.state.activeQuestion + 1,
+            answerState: null
+          })
+        }
+
+        window.clearTimeout(timeout)
+      }, 1000)
+
+
+    } else {
+      // если не правильный ответ
+
+      this.setState({
+        answerState: {[answerId]: 'ActiveQuiz__item--error'}
+      })
+    }
+  }
+
+  /**
+   * Метод проверяет закончились ли вопросы викторины
+   * @return {boolean}
+   **/
+  isQuizFinished() {
+    return this.state.activeQuestion + 1 === this.state.quiz.length
   }
 
   /**
@@ -73,6 +109,7 @@ class Quiz extends Component {
             question={this.state.quiz[this.state.activeQuestion].question} // -> вопрос
             answers={this.state.quiz[this.state.activeQuestion].answers}   // -> варианты ответов
 
+            state={this.state.answerState}                                 // -> меняет цвет пункта при клике на него
             answerNumber={this.state.activeQuestion + 1}                   // -> номер вопроса
             quizLength={this.state.quiz.length}                            // -> всего вопросов
 

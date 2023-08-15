@@ -1,4 +1,4 @@
-.ActiveQuiz__item{
+.ActiveQuiz__item {
   padding: 5px 10px;
   margin-bottom: 5px;
 
@@ -11,5 +11,13 @@
 
   &:hover {
     background: rgba(255, 255, 255, .2);
+  }
+
+  &--success {
+    background: rgba(161, 240, 69, .7);
+  }
+
+  &--error{
+    background: rgba(240, 87, 108, .7);
   }
 }
