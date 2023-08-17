@@ -2,6 +2,7 @@ import {Component} from 'react'
 import style from './Quiz.module.scss'
 
 import ActiveQuiz from "../../components/ActiveQuiz";
+import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
 
 /**
  * Компонент {Викторина}
@@ -43,7 +44,10 @@ class Quiz extends Component {
           {text: '1803', id: 4}
         ]
       }
-    ]
+    ],
+
+    // закончена ли викторины
+    isFinished: true
 
   }
 
@@ -106,23 +110,31 @@ class Quiz extends Component {
    * Отрисовка
    **/
   render() {
+
+    const component =  this.state.isFinished ?
+      //-> Компонент финиш викторины
+      <FinishedQuiz
+
+      />
+      :
+      //-> Компонент активный вопрос
+      <ActiveQuiz
+        question={this.state.quiz[this.state.activeQuestion].question} // -> вопрос
+        answers={this.state.quiz[this.state.activeQuestion].answers}   // -> варианты ответов
+
+        state={this.state.answerState}                                 // -> меняет цвет пункта при клике на него
+        answerNumber={this.state.activeQuestion + 1}                   // -> номер вопроса
+        quizLength={this.state.quiz.length}                            // -> всего вопросов
+
+        onAnswerClick={this.onAnswerClickHandler}                      // -> обработчик клика по ответу на вопрос
+      />
+
     return (
       <div className={style.Quiz}>
         <div className={style.Quiz__wrapper}>
           <h1 className={style.Quiz__title}>Ответьте на все вопросы</h1>
 
-          <ActiveQuiz
-
-            question={this.state.quiz[this.state.activeQuestion].question} // -> вопрос
-            answers={this.state.quiz[this.state.activeQuestion].answers}   // -> варианты ответов
-
-            state={this.state.answerState}                                 // -> меняет цвет пункта при клике на него
-            answerNumber={this.state.activeQuestion + 1}                   // -> номер вопроса
-            quizLength={this.state.quiz.length}                            // -> всего вопросов
-
-            onAnswerClick={this.onAnswerClickHandler}                      // -> обработчик клика по ответу на вопрос
-
-          /> {/* -> Компонент активный вопрос */}
+          {component}
 
         </div>
       </div>
