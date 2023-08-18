@@ -47,7 +47,10 @@ class Quiz extends Component {
     ],
 
     // закончена ли викторины
-    isFinished: true
+    isFinished: false,
+
+    // результаты викторины
+    results: {}, // {[id]: success error}
 
   }
 
@@ -60,25 +63,37 @@ class Quiz extends Component {
    */
   onAnswerClickHandler = (answerId, e) => {
     if (this.state.answerState) {
+      // предотвращает двойное нажатия на правильный вопрос викторины
       const key = Object.keys(this.state.answerState)[0]
+
       if (this.state.answerState[key] === 'ActiveQuiz__item--success') {
         return
       }
     }
 
-    const question = this.state.quiz[this.state.activeQuestion]
+    const question = this.state.quiz[this.state.activeQuestion],
+          results = this.state.results
 
     if (question.rightAnswerId === answerId) {
       // если правильный ответ
 
+      if (!results[question.id]) {
+        results[question.id] = 'success'
+      }
+
       this.setState({
-        answerState: {[answerId]: 'ActiveQuiz__item--success'}
+        answerState: {[answerId]: 'ActiveQuiz__item--success'},
+        results
       })
 
       const timeout = window.setTimeout(() => {
         if (this.isQuizFinished()) {
-          console.log('Finished')
+          // ответил на все вопросы викторины
+          this.setState({
+            isFinished: true
+          })
         } else {
+          // переключает на следующий вопрос викторины
           this.setState({
             activeQuestion: this.state.activeQuestion + 1,
             answerState: null
@@ -91,9 +106,11 @@ class Quiz extends Component {
 
     } else {
       // если не правильный ответ
+      results[question.id] = 'error'
 
       this.setState({
-        answerState: {[answerId]: 'ActiveQuiz__item--error'}
+        answerState: {[answerId]: 'ActiveQuiz__item--error'},
+        results
       })
     }
   }
@@ -107,6 +124,19 @@ class Quiz extends Component {
   }
 
   /**
+   * Метод сбрасывает состояние (state) в начальное состояние компонента
+   * @return {void}
+   **/
+  retryHandler = () => {
+    this.setState({
+      activeQuestion: 0,
+      answerState: null,
+      isFinished: false,
+      results: {}
+    })
+  }
+
+  /**
    * Отрисовка
    **/
   render() {
@@ -114,7 +144,9 @@ class Quiz extends Component {
     const component =  this.state.isFinished ?
       //-> Компонент финиш викторины
       <FinishedQuiz
-
+        results={this.state.results}                                   // -> результаты викторины
+        quiz={this.state.quiz}                                         // -> вопросы викторины
+        onRetry={this.retryHandler}                                    // -> обработчик клика по кнопке повторить
       />
       :
       //-> Компонент активный вопрос

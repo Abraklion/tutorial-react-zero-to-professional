@@ -1,4 +1,5 @@
 import style from './ActiveQuiz.module.scss'
+
 import AnswersList from "./AnswersList";
 
 /**
