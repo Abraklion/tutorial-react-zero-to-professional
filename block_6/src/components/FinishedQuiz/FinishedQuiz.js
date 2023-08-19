@@ -2,6 +2,9 @@ import style from './FinishedQuiz.module.scss'
 
 import Button from "../UI/Button";
 
+/**
+ * Компонент {Результаты викторины}
+ * */
 const FinishedQuiz = props => {
   // считаем количество правильных ответов
   const successCount = Object.keys(props.results).reduce((total, key) => {

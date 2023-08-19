@@ -1,5 +1,8 @@
 import style from './MenuToggle.module.scss'
 
+/**
+ * Компонент {Меню Бургер}
+ * */
 const MenuToggle = props => {
   const cls = [
     style.MenuToggle,
@@ -13,6 +16,9 @@ const MenuToggle = props => {
     cls.push('fa-bars')
   }
 
+  /**
+   * Отрисовка
+   **/
   return (
     <i
       className={cls.join(' ')}

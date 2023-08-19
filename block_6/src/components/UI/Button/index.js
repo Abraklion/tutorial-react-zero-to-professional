@@ -1,5 +1,8 @@
 import style from './button.module.scss'
 
+/**
+ * Компонент {Кнопка}
+ * */
 const Button = props => {
   const cls = [
     style.button,

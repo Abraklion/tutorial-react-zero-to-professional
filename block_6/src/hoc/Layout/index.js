@@ -2,6 +2,7 @@ import {Component} from "react";
 import style from './Layout.module.scss'
 
 import MenuToggle from "../../components/Navigation/MenuToggle";
+import Drawer from "../../components/Navigation/Drawer";
 
 /**
  * Компонент {Викторина}
@@ -37,14 +38,25 @@ class Layout extends Component {
     return (
       <>
         <header>
+
+          <Drawer
+            isOpen={this.state.menu}
+          /> {/* -> Компонент меню */}
+
           <MenuToggle
             onToggle={this.toggleMenuHandler}
             isOpen={this.state.menu}
-          />
+          />{/* -> Бургер */}
+
         </header>
+
         <main className={style.Layout}>
           {this.props.children}
         </main>
+
+        <footer>
+
+        </footer>
       </>
     )
   }
